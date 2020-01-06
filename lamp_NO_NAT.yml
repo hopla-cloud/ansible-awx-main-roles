@@ -3,4 +3,4 @@
   vars:
     ansible_user: "{{ default_username }}"
   roles:
-    - hoplacloud.apache-php
+    - hoplacloud.apache_php
