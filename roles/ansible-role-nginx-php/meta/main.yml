@@ -1,0 +1,31 @@
+galaxy_info:
+  role_name: nginx_php
+  author: hoplacloud
+  description: Hopla.cloud role for ansible to deploy Nginx and PHP (FPM)
+  company: hopla.cloud
+
+  license: GPLv3
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+  galaxy_tags:
+    - web
+    - nginx
+    - php
+    - fpm
+    - ftp
+
+dependencies:
+    - hoplacloud.linux_update
+    - hoplacloud.linux_motd
+    - hoplacloud.fail2ban
+    - hoplacloud.proftpd
+    - hoplacloud.postfix
+    - hoplacloud.git
+    - hoplacloud.letsencrypt
+    - hoplacloud.vhostdeploy_nginx

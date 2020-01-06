@@ -1,0 +1,5 @@
+---
+# defaults file for hoplacloud.nodejs
+
+# NodeJS version to deploy
+node_version: "12"

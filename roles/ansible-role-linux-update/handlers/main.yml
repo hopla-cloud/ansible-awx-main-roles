@@ -1,0 +1,4 @@
+---
+# handlers file for hoplacloud.linux_update
+- name: reboot
+  shell: shutdown -r now 

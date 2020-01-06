@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: proftpd
+  author: hopla-cloud
+  description: Hopla.cloud role for ansible to deploy ProFTPd
+  company: hopla.cloud
+
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+  galaxy_tags:
+    - ftp
+
+dependencies: []
