@@ -1,0 +1,4 @@
+#!/bin/sh
+printf "\n"
+figlet hopla.cloud | /usr/games/lolcat
+printf "\n"

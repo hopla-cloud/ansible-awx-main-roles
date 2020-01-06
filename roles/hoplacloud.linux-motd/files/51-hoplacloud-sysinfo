@@ -1,0 +1,5 @@
+#!/bin/sh
+printf "\n"
+printf "Deployed OneClick apps (supported by hopla.cloud):"
+printf "\n"
+cat /etc/hopla.cloud-roles
