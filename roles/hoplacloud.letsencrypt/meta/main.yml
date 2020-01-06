@@ -1,0 +1,21 @@
+galaxy_info:
+  role_name: letsencrypt
+  author: hoplacloud
+  description: Hopla.cloud role for ansible to deploy Let's Encrypt certbot tool.
+  company: hopla.cloud
+
+  license: GPLv3
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+  galaxy_tags:
+    - web
+    - letsencrypt
+    - nginx
+
+dependencies: []

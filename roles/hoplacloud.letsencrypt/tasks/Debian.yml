@@ -1,0 +1,11 @@
+---
+# tasks file for hoplacloud.letsencrypt
+
+- name: Install Certbot (letsencrypt) PPA Repository
+  apt_repository:
+    repo: 'ppa:certbot/certbot'
+
+- name: Install Certbot for {{ server_type }} web server
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - python-certbot-{{ server_type }}
