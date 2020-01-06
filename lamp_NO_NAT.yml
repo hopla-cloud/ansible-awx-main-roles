@@ -1,6 +1,4 @@
 ---
 - hosts: "{{ instance_name }}"
-  vars:
-    ansible_user: "{{ default_username }}"
   roles:
     - hoplacloud.apache_php
