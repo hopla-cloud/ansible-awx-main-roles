@@ -1,6 +1,4 @@
 ---
 - hosts: "{{ instance_name }}"
-  pre_tasks:
-
   roles:
-    - geerlingguy.elasticsearch
+    - hoplacloud.nodejs
