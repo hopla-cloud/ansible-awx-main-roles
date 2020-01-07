@@ -129,3 +129,9 @@
     src: /var/www
     dest: /home/{{ user_name }}/my_websites
     state: link
+
+- name: restart apache
+  service: name=apache2 state=restarted
+
+- name: restart php-fpm
+  service: name=php{{ php_version }}-fpm state=restarted

@@ -23,4 +23,7 @@
   failed_when: False
   register: reboot_required
   changed_when: reboot_required.rc == 0
-  notify: reboot
+
+- name: reboot
+  reboot:
+  when: reboot_required

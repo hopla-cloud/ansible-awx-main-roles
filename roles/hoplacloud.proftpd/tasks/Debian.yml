@@ -22,3 +22,6 @@
   lineinfile:
     path: /etc/shells
     line: '/usr/local/bin/ftponly'
+
+- name: restart proftpd
+  service: name=proftpd state=restarted
