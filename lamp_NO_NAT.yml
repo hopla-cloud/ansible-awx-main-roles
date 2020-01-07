@@ -2,10 +2,11 @@
 - hosts: "{{ instance_name }}"
   pre_tasks:
     - name: Add mariadb Repository Key
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: 0xF1656F24C74CD1D8
-        state: present
+      shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8"
+#      apt_key:
+#        keyserver: keyserver.ubuntu.com
+#        id: 0xF1656F24C74CD1D8
+#        state: present
       when: "'mariadb-server' in mysql_packages"
 
     - name: Add mariadb Repository
