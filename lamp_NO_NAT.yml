@@ -1,5 +1,11 @@
 ---
 - hosts: "{{ instance_name }}"
+  pre_tasks:
+  - apt_repository:
+    repo: deb [arch=amd64,arm64,ppc64el] http://mirror.terrahost.no/mariadb/repo/10.4/ubuntu bionic main
+    state: present
+    filename: MariaDB
+  when: "'mariadb-server' in mysql_packages"
   roles:
     - hoplacloud.apache_php
     - geerlingguy.mysql

@@ -10,13 +10,6 @@
     repo: 'ppa:ondrej/php'
 
 - name: Install Apache2 and PHP-FPM Packages
-  apt:
-    name: python3-pymysql
-    state: latest
-    update_cache: yes
-
-
-- name: Install Apache2 and PHP-FPM Packages
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
     - apache2
