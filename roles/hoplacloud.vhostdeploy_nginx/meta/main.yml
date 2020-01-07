@@ -19,6 +19,4 @@ galaxy_info:
     - php
     - fpm
 
-dependencies:
-    - hoplacloud.nginx_php
-    - hoplacloud.proftpd
+dependencies: []
