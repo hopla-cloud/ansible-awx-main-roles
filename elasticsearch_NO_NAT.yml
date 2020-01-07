@@ -1,0 +1,4 @@
+---
+- hosts: "{{ instance_name }}"
+  roles:
+    - elastic.elasticsearch
