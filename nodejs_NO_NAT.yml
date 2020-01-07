@@ -3,4 +3,4 @@
   pre_tasks:
 
   roles:
-    - geerlingguy.elasticsearch
+    - hoplacloud.nodejs
