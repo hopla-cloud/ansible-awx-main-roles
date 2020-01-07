@@ -2,3 +2,4 @@
 - hosts: "{{ instance_name }}"
   roles:
     - hoplacloud.apache_php
+    - geerlingguy.mysql
