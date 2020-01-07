@@ -11,7 +11,7 @@
 
     - name: Add mariadb Repository
       apt_repository:
-        repo: "deb http://mirror.terrahost.no/mariadb/repo/10.4/ubuntu bionic main"
+        repo: "deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/ubuntu bionic main"
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages"
