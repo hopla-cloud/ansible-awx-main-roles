@@ -26,4 +26,4 @@
 
 - name: reboot
   reboot:
-  when: reboot_required
+  when: reboot_required.changed
