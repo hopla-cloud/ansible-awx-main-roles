@@ -1,0 +1,11 @@
+---
+- hosts: "{{ instance_name }}"
+  vars:
+    es_version: 7.5.1
+    es_enable_xpack: true
+    es_heap_size: "256m"
+    es_instance_name: "node1"
+    es_api_basic_auth_username: elastic
+    es_api_basic_auth_password: hoplacloud
+  roles:
+    - elastic.elasticsearch

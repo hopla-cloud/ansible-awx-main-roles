@@ -1,4 +1,0 @@
----
-- hosts: "{{ instance_name }}"
-  roles:
-    - geerlingguy.elasticsearch
