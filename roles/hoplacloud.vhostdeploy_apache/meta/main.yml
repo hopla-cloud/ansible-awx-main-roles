@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: vhostdeploy_apache
   author: hoplacloud
-  description: Hopla.cloud role for ansible to deploy the vhostdeploy script
+  description: Hopla.cloud role for ansible to deploy vhost_deploy script for hoplacloud.apache_php role
   company: hopla.cloud
   license: GPLv3
 
