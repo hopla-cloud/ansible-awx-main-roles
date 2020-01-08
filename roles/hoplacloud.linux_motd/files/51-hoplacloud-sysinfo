@@ -1,8 +1,8 @@
 #!/bin/sh
-printf "\n"
-printf "Deployed OneClick apps (supported by hopla.cloud):"
-printf "\n"
 if [ -f "/etc/hopla.cloud-roles" ]
 then
+            printf "\n"
+            printf "Deployed OneClick apps (supported by hopla.cloud):"
+            printf "\n"
             cat /etc/hopla.cloud-roles
     fi

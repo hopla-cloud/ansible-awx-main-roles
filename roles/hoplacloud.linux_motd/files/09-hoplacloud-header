@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 printf "\n"
-figlet hopla.cloud | /usr/games/lolcat
+figlet hopla.cloud | /usr/games/lolcat -f
 printf "\n"
