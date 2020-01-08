@@ -45,12 +45,16 @@
     path: /etc/apache2/conf-available/security.conf
     regexp: '^ServerTokens'
     line: 'ServerTokens prod'
+  notify:
+    - restart apache
 
 - name: Configure Apache2 basic security (ServerSignature)
   lineinfile:
     path: /etc/apache2/conf-available/security.conf
     regexp: '^ServerSignature'
     line: 'ServerSignature Off'
+  notify:
+    - restart apache
 
 - name: Remove default Apache site directory
   file:
@@ -74,48 +78,54 @@
     path: /etc/apache2/sites-available/000-default.conf
     regexp: '\t*DocumentRoot'
     line: 'DocumentRoot /var/www/default_site'
+  notify:
+    - restart apache
 
 - name: Patching default ssl vhost
   lineinfile:
     path: /etc/apache2/sites-available/default-ssl.conf
     regexp: '\t*DocumentRoot'
     line: 'DocumentRoot /var/www/default_site'
+  notify:
+    - restart apache
 
 - name: Patching default non-ssl vhost (user email)
   lineinfile:
     path: /etc/apache2/sites-available/000-default.conf
     regexp: '\t*ServerAdmin'
     line: 'ServerAdmin {{ user_email }}'
+  notify:
+    - restart apache
 
 - name: Patching default ssl vhost (user email)
   lineinfile:
     path: /etc/apache2/sites-available/default-ssl.conf
     regexp: '\t*ServerAdmin'
     line: 'ServerAdmin {{ user_email }}'
+  notify:
+    - restart apache
 
 - name: Sending the php.ini configuration file (FPM)
   template:
     src: php.ini.j2
     dest: /etc/php/{{ php_version }}/fpm/php.ini
+  notify:
+    - restart php-fpm
 
 - name: Sending the php.ini configuration file (CLI)
   template:
     src: php.ini.j2
     dest: /etc/php/{{ php_version }}/cli/php.ini
+  notify:
+    - restart php-fpm
 
-- name: Creating websites directory /var/www/custs
+- name: Creating websites directory /var/www/sites
   file:
-    path: /var/www/custs
+    path: /var/www/sites
     state: directory
 
-- name: Creating home symlink to /var/www/custs
+- name: Creating home symlink to /var/www/sites
   file:
     src: /var/www
     dest: /home/{{ user_name }}/my_websites
     state: link
-
-- name: restart apache
-  service: name=apache2 state=restarted
-
-- name: restart php-fpm
-  service: name=php{{ php_version }}-fpm state=restarted
