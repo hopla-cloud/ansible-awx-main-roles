@@ -2,4 +2,7 @@
 printf "\n"
 printf "Deployed OneClick apps (supported by hopla.cloud):"
 printf "\n"
-cat /etc/hopla.cloud-roles
+if [ -f "/etc/hopla.cloud-roles" ]
+then
+            cat /etc/hopla.cloud-roles
+    fi
