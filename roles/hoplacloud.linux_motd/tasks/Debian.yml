@@ -1,11 +1,17 @@
 ---
 # tasks file for hoplacloud.linux_motd
 
-- name: Install motd tools
-  apt: name={{ item }} state=latest update_cache=yes
-  with_items:
-    - lolcat
-    - figlet
+- name: Install lolcat
+  apt:
+    name: lolcat
+    state: latest
+    update_cache: yes
+
+- name: Install figlet
+  apt:
+    name: figlet
+    state: latest
+    update_cache: yes
 
 - name: Add 51-sysinfo file
   copy:

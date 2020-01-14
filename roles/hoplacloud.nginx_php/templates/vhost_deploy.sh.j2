@@ -1,3 +1,4 @@
+{% raw %}
 #!/bin/bash
 
 #   This program is free software: you can redistribute it and/or modify
@@ -14,9 +15,10 @@
 # Script Version 2.4-nginx
 # Written by iilyo SAS
 
+{% endraw %}
 # Admin user for folder rights (example : h123)
-adminUser="hXXXX"
-adminEmail="admin@customer.com"
+adminUser="{{ user_name }}"
+adminEmail="{{ user_email }}"
 
 # Nginx Configuration
 nginxGroup="www-data"
@@ -24,12 +26,13 @@ nginxConfPrefix="/etc/nginx"
 sitesPathPrefix="/var/www/sites"
 
 # PHP-FPM Configuration (5.6, 7.0, 7.1, 7.2)
-phpfpmDaemonName="php7.2-fpm"
-phpfpmPoolPrefix="/etc/php/7.2/fpm/pool.d"
+phpfpmDaemonName="php{{ php_version }}-fpm"
+phpfpmPoolPrefix="/etc/php/{{ php_version }}/fpm/pool.d"
 
 # FTP Configuration
 ftpShellPath="/usr/local/bin/ftponly"
 
+{% raw %}
 # Put the date into a var
 dateLog=$(date +%Y%m%d-%H%M)
 
@@ -302,3 +305,4 @@ case $1 in
     exit 1
   ;;
 esac
+{% endraw %}

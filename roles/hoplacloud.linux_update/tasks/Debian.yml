@@ -29,7 +29,8 @@
   failed_when: False
   register: reboot_required
   changed_when: reboot_required.rc == 0
+  notify: reboot_localhost
 
-- name: reboot
+- name: Reboot if required
   reboot:
-  when: reboot_required.changed
+  when: reboot_required.changed and inventory_hostname != "localhost"

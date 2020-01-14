@@ -105,6 +105,23 @@
   notify:
     - restart apache
 
+- name: Ensure the vhost_deploy directory is present
+  file:
+    path: /usr/src/vhost_deploy_apache
+    state: directory
+
+- name: Sending vhost_deploy_apache file
+  template:
+    src: vhost_deploy.sh.j2
+    dest: /usr/src/vhost_deploy_apache/vhost_deploy.sh
+    mode: '0755'
+
+- name: Creating symlink for vhost_deploy.sh script
+  file:
+    src: /usr/src/vhost_deploy_apache/vhost_deploy.sh
+    dest: /usr/local/sbin/vhost_deploy
+    state: link
+
 - name: Sending the php.ini configuration file (FPM)
   template:
     src: php.ini.j2
@@ -131,7 +148,8 @@
     state: link
 
 - name: Check if Composer is installed.
-  stat: "path={{ composer_path }}"
+  stat:
+    path: /usr/local/bin/composer
   register: composer_bin
 
 - name: Get Composer installer signature.
@@ -150,5 +168,5 @@
   when: not composer_bin.stat.exists
 
 - name: Run Composer installer.
-  command: php composer_installer.php --install-dir=/usr/local/bin --filename=composer
+  command: php /tmp/composer-installer.php --install-dir=/usr/local/bin --filename=composer
   when: not composer_bin.stat.exists
