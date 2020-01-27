@@ -1,0 +1,67 @@
+---
+- name: Configure en_US.UTF-8 locale
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- name: Ensure password ssh authentification is yes
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication yes"
+
+- name: restart service ssh
+  systemd:
+    state: restarted
+    name: ssh
+
+- name: Set timezone to Europe/Paris
+  timezone:
+    name: Europe/Paris
+
+- name: Ensure keyboard is fr
+  lineinfile:
+    path: /etc/default/keyboard
+    regexp: '^XKBLAYOUT'
+    line: 'XKBLAYOUT="fr"'
+
+- name: restart service keyboard
+  systemd:
+    state: restarted
+    name: keyboard-setup
+
+- name: Manage swap file entry in fstab.
+  mount:
+   name: none
+   src: "/var/swap.file"
+   fstype: swap
+   opts: sw
+   state: present
+  when: ansible_swaptotal_mb == 0
+
+- name: Ensure swap file exists. 2Gb
+  command: fallocate -l 2GiB /var/swap.file
+  when: ansible_memtotal_mb <= 4096 and ansible_swaptotal_mb == 0
+  register: swap_file_create_2
+
+- name: Ensure swap file exists. 4Gb
+  command: fallocate -l 4GiB /var/swap.file
+  when: ansible_memtotal_mb > 4096 and ansible_swaptotal_mb == 0
+  register: swap_file_create_4
+
+- name: Set permissions on swap file.
+  file:
+   path: "/var/swap.file"
+   owner: root
+   group: root
+   mode: 0600
+  when: swap_file_create_2 is changed or swap_file_create_4 is changed
+
+- name: Make swap file if necessary.
+  command: mkswap /var/swap.file
+  when: swap_file_create_2 is changed or swap_file_create_4 is changed
+  register: mkswap_result
+
+- name: Run swapon on the swap file.
+  command: swapon -a
+  when: mkswap_result is changed

@@ -1,0 +1,44 @@
+---
+- name: Create SUDO user for the customer
+  user:
+    name: "{{ username }}"
+    comment: "Default sudo user created by hopla.cloud"
+    groups: wheel
+    shell: /bin/bash
+    state: present
+
+- name: Check if the authorized_keys exists
+  stat:
+    path: "/home/{{ username }}/.ssh/authorized_keys"
+  register: stat_authorized_keys
+
+- name: Create .ssh user folder
+  file:
+    path: "/home/{{ username }}/.ssh"
+    state: directory
+    owner: "{{ username }}"
+  when: stat_authorized_keys.stat.exists == False
+
+- name: Copy authorized_keys file
+  copy:
+    src: "/home/{{ default_username }}/.ssh/authorized_keys"
+    dest: "/home/{{ username }}/.ssh/authorized_keys"
+    remote_src: yes
+    owner: "{{ username }}"
+  when: stat_authorized_keys.stat.exists == False
+
+- name: Check if the sudo rule exists
+  stat:
+    path: /etc/sudoers.d/90-Hoplacloud-sudo-users
+  register: stat_sudo
+
+- name: Update sudo rules
+  template:
+    src: 90-Hoplacloud-sudo-users.j2
+    dest: /etc/sudoers.d/90-Hoplacloud-sudo-users
+    owner: root
+    group: root
+    mode: '0600'
+  when: stat_sudo.stat.exists == False
+
+- meta: end_play
