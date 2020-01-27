@@ -17,5 +17,4 @@ galaxy_info:
     - fail2ban
     - security
 
-dependencies:
-    - hoplacloud.linux_motd
+dependencies: []
