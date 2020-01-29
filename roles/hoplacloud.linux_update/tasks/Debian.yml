@@ -30,6 +30,7 @@
   register: reboot_required
   changed_when: reboot_required.rc == 0
   notify: reboot_localhost
+  when: allow_reboot == True
 
 - name: Reboot if required
   reboot:
