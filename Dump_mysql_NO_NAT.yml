@@ -1,4 +1,4 @@
 ---
 - hosts: "{{ instance_name }}"
   roles:
-    - hoplacloud.dum_mysql
+    - hoplacloud.dump_mysql
