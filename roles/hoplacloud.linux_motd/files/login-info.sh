@@ -14,7 +14,7 @@ printf "Official documentation: https://wiki.hopla.cloud"
 printf "\n"
 # Basic info
 HOSTNAME=`uname -n`
-ROOT=`df -Ph | grep xvda1 | awk '{print $4}' | tr -d '\n'`
+ROOT=`df -Ph | grep da1 | awk '{print $4}' | tr -d '\n'`
 
 # System load
 MEMORY1=`free -t -m | grep Total | awk '{print $3" MB";}'`
