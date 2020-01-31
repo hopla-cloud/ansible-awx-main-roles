@@ -1,2 +1,5 @@
 ---
-# tasks file for hoplacloud.fail2ban
+- name: Ensure fail2ban is installed
+  yum:
+    name: fail2ban
+    state: latest
