@@ -29,11 +29,11 @@
     path: /etc/aliases
     insertafter: "^postmaster"
     line: "{{ username }}: {{ user_email }}"
-    register: new_alias
+  register: new_alias
 
 - name: rum newaliases command
   command: newaliases
-  when: new_alias is changed 
+  when: new_alias is changed
 
 - name: Setup myhostname in postfix
   lineinfile:
