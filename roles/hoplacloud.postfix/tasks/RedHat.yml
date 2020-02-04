@@ -30,8 +30,8 @@
      msg: "Reverse DNS is {{ ptr_ipv4.stdout | regex_replace('.$', '') }}"
 
 - set_fact:
-  public_ipv4: "{{ public_ipv4.stdout | regex_replace('\"', '') }}"
-  ptr_v4: "{{ ptr_ipv4.stdout | regex_replace('.$', '') }}"
+    public_ipv4: "{{ public_ipv4.stdout | regex_replace('\"', '') }}"
+    ptr_v4: "{{ ptr_ipv4.stdout | regex_replace('.$', '') }}"
 
 - name: Setup smtpd_banner in postfix
   lineinfile:
