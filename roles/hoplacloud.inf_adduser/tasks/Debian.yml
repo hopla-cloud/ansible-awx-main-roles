@@ -1,7 +1,7 @@
 ---
 - name: Create SUDO user for the customer
   user:
-    name: "{{ username }}"
+    name: "{{ user_name }}"
     comment: "Default sudo user created by hopla.cloud"
     groups: sudo
     shell: /bin/bash
@@ -9,22 +9,22 @@
 
 - name: Check if the authorized_keys exists
   stat:
-    path: "/home/{{ username }}/.ssh/authorized_keys"
+    path: "/home/{{ user_name }}/.ssh/authorized_keys"
   register: stat_authorized_keys
 
 - name: Create .ssh user folder
   file:
-    path: "/home/{{ username }}/.ssh"
+    path: "/home/{{ user_name }}/.ssh"
     state: directory
-    owner: "{{ username }}"
+    owner: "{{ user_name }}"
   when: stat_authorized_keys.stat.exists == False
 
 - name: Copy authorized_keys file
   copy:
     src: "/home/{{ default_username }}/.ssh/authorized_keys"
-    dest: "/home/{{ username }}/.ssh/authorized_keys"
+    dest: "/home/{{ user_name }}/.ssh/authorized_keys"
     remote_src: yes
-    owner: "{{ username }}"
+    owner: "{{ user_name }}"
   when: stat_authorized_keys.stat.exists == False
 
 - name: Check if the sudo rule exists
