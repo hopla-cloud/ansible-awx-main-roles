@@ -1,7 +1,0 @@
----
-# tasks file for hoplacloud.fail2ban
-
-- name: Install latest version of Fail2ban
-  apt:
-    name: fail2ban
-    state: latest

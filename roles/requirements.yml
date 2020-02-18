@@ -1,5 +1,63 @@
-# from galaxy
-- src: yatesr.timezone
+- src: https://github.com/hopla-cloud/ansible-role-linux-update
+  version: master
+  name: hoplacloud.linux_update
 
-# from GitHub
-- src: https://github.com/bennojoy/nginx
+- src: https://github.com/hopla-cloud/ansible-role-apache-php
+  version: master
+  name: hoplacloud.apache_php
+
+- src: https://github.com/hopla-cloud/ansible-role-proftpd
+  version: master
+  name: hoplacloud.proftpd
+
+- src: https://github.com/hopla-cloud/ansible-role-linux-motd
+  version: master
+  name: hoplacloud.linux_motd
+
+- src: https://github.com/hopla-cloud/ansible-role-fail2ban
+  version: master
+  name: hoplacloud.fail2ban
+
+- src: https://github.com/hopla-cloud/ansible-role-postfix
+  version: master
+  name: hoplacloud.postfix
+
+- src: https://github.com/hopla-cloud/ansible-role-letsencrypt
+  version: master
+  name: hoplacloud.letsencrypt
+
+- src: https://github.com/hopla-cloud/ansible-role-git
+  version: master
+  name: hoplacloud.git
+
+- src: https://github.com/hopla-cloud/ansible-role-nginx-php
+  version: master
+  name: hoplacloud.nginx_php
+
+- src: https://github.com/hopla-cloud/ansible-role-linuxbase
+  version: master
+  name: hoplacloud.linuxbase
+
+- src: https://github.com/hopla-cloud/ansible-role-dump-mysql
+  version: master
+  name: hoplacloud.dump_mysql
+
+- src: https://github.com/hopla-cloud/ansible-role-nodejs
+  version: master
+  name: hoplacloud.nodejs
+
+- src: https://github.com/hopla-cloud/ansible-role-inf-adduser
+  version: master
+  name: hoplacloud.inf_adduser
+
+- src: https://github.com/hopla-cloud/ansible-role-inf-deluser
+  version: master
+  name: hoplacloud.inf_deluser
+
+- src: https://github.com/geerlingguy/ansible-role-mysql
+  version: master
+  name: geerlingguy.mysql
+
+- src: https://github.com/elastic/ansible-elasticsearch
+  version: master
+  name: elastic.elasticsearch

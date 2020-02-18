@@ -1,4 +1,0 @@
-#!/bin/bash
-printf "\n"
-figlet hopla.cloud | /usr/games/lolcat -f
-printf "\n"

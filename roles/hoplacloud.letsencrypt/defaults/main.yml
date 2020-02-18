@@ -1,5 +1,0 @@
----
-# defaults file for hoplacloud.letsencrypt
-
-# Web server type, can be "apache" or "nginx"
-server_type: "apache"
