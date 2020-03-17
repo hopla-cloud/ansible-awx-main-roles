@@ -15,7 +15,8 @@
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages"
-
+  vars:
+    server_type: nginx
   roles:
     - hoplacloud.nginx_php
     - geerlingguy.mysql
