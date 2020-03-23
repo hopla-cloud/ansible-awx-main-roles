@@ -1,7 +1,7 @@
 ---
 - hosts: "{{ instance_name }}"
-  gather_facts: no
   vars:
+    ansible_connection: ssh
     ansible_host: "{{openstack.metadata.ssh_pub_ip}}"
     ansible_port: "{{openstack.metadata.ssh_pub_port}}"
     ansible_user: "{{ default_username }}"
