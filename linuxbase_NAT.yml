@@ -1,8 +1,8 @@
 ---
 - hosts: "{{ instance_name }}"
   vars:
-    ansible_port: "{{openstack.metadata.ssh_pub_ip}}"
-    ansible_host: "{{openstack.metadata.ssh_pub_port}}"
+    ansible_port: "{{openstack.metadata.ssh_pub_port}}"
+    ansible_host: "{{openstack.metadata.ssh_pub_ip}}"
     ansible_user: "{{ default_username }}"
   roles:
     - hoplacloud.inf_adduser
