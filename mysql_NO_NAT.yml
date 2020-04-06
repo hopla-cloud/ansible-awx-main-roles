@@ -1,0 +1,20 @@
+---
+- hosts: "{{ instance_name }}"
+  pre_tasks:
+    - name: Add mariadb Repository Key
+      shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8"
+#      apt_key:
+#        keyserver: keyserver.ubuntu.com
+#        id: 0xF1656F24C74CD1D8
+#        state: present
+      when: "'mariadb-server' in mysql_packages"
+
+    - name: Add mariadb Repository
+      apt_repository:
+        repo: "deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/ubuntu bionic main"
+        state: present
+        filename: MariaDB
+      when: "'mariadb-server' in mysql_packages"
+
+  roles:
+    - geerlingguy.mysql
