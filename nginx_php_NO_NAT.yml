@@ -1,0 +1,6 @@
+---
+- hosts: "{{ instance_name }}"
+  vars:
+    server_type: nginx
+  roles:
+    - hoplacloud.nginx_php
