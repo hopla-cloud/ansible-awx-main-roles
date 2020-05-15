@@ -27,6 +27,7 @@
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
+<<<<<<< HEAD
     - name: Set fact for python mysql Ubuntu 20.04
       set_facts:
         mysql_python_package_debian:
@@ -40,6 +41,21 @@
           - python-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+=======
+#    - name: Set fact for python mysql Ubuntu 20.04
+#     set_tasks:
+#        mysql_python_package_debian:
+#          - python3-mysqldb
+#          - python3-pymysql
+#      when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
+
+#    - name: Set fact for python mysql Ubuntu 18.04
+#      set_tasks:
+#        mysql_python_package_debian:
+#          - python-mysqldb
+#          - python3-pymysql
+#      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+>>>>>>> 87cbf1467031a199cd7f02088d492f7b98096cb2
   roles:
     - hoplacloud.apache_php
     - geerlingguy.mysql
