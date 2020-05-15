@@ -31,20 +31,20 @@
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
-
+      
     - name: Set fact for python mysql Ubuntu 20.04
-      set_tasks:
+      set_facts:
         mysql_python_package_debian:
           - python3-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
     - name: Set fact for python mysql Ubuntu 18.04
-      set_tasks:
+      set_facts:
         mysql_python_package_debian:
           - python-mysqldb
           - python3-pymysql
-      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"      
+      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
   roles:
     - hoplacloud.apache_php
     - geerlingguy.mysql
