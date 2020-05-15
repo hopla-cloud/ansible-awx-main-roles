@@ -28,14 +28,14 @@
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
     - name: Set fact for python mysql Ubuntu 20.04
-      set_facts:
+      set_fact:
         mysql_python_package_debian:
           - python3-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
     - name: Set fact for python mysql Ubuntu 18.04
-      set_facts:
+      set_fact:
         mysql_python_package_debian:
           - python-mysqldb
           - python3-pymysql
