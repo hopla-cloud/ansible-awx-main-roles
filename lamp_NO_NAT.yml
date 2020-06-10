@@ -22,7 +22,7 @@
 
     - name: Add mariadb Repository Ubuntu 20.04
       apt_repository:
-        repo: "deb http://mirrors.nav.ro/mariadb/repo/10.4/ubuntu focal main"
+        repo: "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.4/ubuntu focal main"
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
