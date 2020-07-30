@@ -1,0 +1,47 @@
+---
+- hosts: "{{ instance_name }}"
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{openstack.metadata.ssh_pub_ip}}"
+    ansible_ssh_host: "{{openstack.metadata.ssh_pub_ip}}"
+    ansible_port: "{{openstack.metadata.ssh_pub_port}}"
+    server_type: nginx
+  pre_tasks:
+    - name: Add mariadb Repository Key Ubuntu 18.04
+      shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8"
+      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+
+    - name: Add mariadb Repository Key Ubuntu 20.04
+      shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F1656F24C74CD1D8"
+      when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
+
+    - name: Add mariadb Repository Ubuntu 18.04
+      apt_repository:
+        repo: "deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/ubuntu bionic main"
+        state: present
+        filename: MariaDB
+      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+
+    - name: Add mariadb Repository Ubuntu 20.04
+      apt_repository:
+        repo: "deb http://mirrors.nav.ro/mariadb/repo/10.4/ubuntu focal main"
+        state: present
+        filename: MariaDB
+      when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
+
+    - name: Set fact for python mysql Ubuntu 20.04
+      set_fact:
+        mysql_python_package_debian:
+          - python3-mysqldb
+          - python3-pymysql
+      when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
+
+    - name: Set fact for python mysql Ubuntu 18.04
+      set_fact:
+        mysql_python_package_debian:
+          - python-mysqldb
+          - python3-pymysql
+      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+  roles:
+    - hoplacloud.nginx_php
+    - geerlingguy.mysql
