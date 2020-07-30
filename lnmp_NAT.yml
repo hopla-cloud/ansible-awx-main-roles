@@ -17,14 +17,14 @@
 
     - name: Add mariadb Repository Ubuntu 18.04
       apt_repository:
-        repo: "deb http://mariadb.mirrors.ovh.net/MariaDB/repo/10.4/ubuntu bionic main"
+        repo: "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.5/ubuntu bionic main"
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
 
     - name: Add mariadb Repository Ubuntu 20.04
       apt_repository:
-        repo: "deb http://mirrors.nav.ro/mariadb/repo/10.4/ubuntu focal main"
+        repo: "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.5/ubuntu focal main"
         state: present
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
@@ -35,6 +35,13 @@
           - python3-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
+
+    - name: Set fact for python mysql Ubuntu 18.04
+      set_fact:
+        mysql_python_package_debian:
+          - python-mysqldb
+          - python3-pymysql
+      when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
 
     - name: Set fact for python mysql Ubuntu 18.04
       set_fact:
