@@ -1,0 +1,9 @@
+---
+- hosts: "{{ instance_name }}"
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{openstack.metadata.ssh_pub_ip}}"
+    ansible_ssh_host: "{{openstack.metadata.ssh_pub_ip}}"
+    ansible_port: "{{openstack.metadata.ssh_pub_port}}"
+  roles:
+    - hoplacloud.apache_php
