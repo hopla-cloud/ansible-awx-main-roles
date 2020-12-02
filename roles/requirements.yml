@@ -54,6 +54,10 @@
   version: master
   name: hoplacloud.inf_deluser
 
+- src: https://github.com/hopla-cloud/ansible-role-docker
+  version: master
+  name: hoplacloud.docker
+
 - src: https://github.com/geerlingguy/ansible-role-mysql
   version: master
   name: geerlingguy.mysql
