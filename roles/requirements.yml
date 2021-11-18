@@ -62,6 +62,6 @@
   version: master
   name: geerlingguy.mysql
 
-- src: https://github.com/elastic/ansible-elasticsearch
-  version: master
-  name: elastic.elasticsearch
+#- src: https://github.com/elastic/ansible-elasticsearch
+#  version: master
+#  name: elastic.elasticsearch
