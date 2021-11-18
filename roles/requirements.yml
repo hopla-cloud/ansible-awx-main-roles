@@ -59,7 +59,7 @@
   name: hoplacloud.docker
 
 - src: https://github.com/hopla-cloud/ansible-role-check-mk
-  version: master
+  version: main
   name: hoplacloud.check_mk
 
 - src: https://github.com/geerlingguy/ansible-role-mysql
