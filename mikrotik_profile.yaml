@@ -6,4 +6,4 @@
     ansible_user: admin
 
   roles:
-    - hoplacloud.ansible-role-mikrotik-create-profile
+    - hoplacloud.mikrotik_create_profile
