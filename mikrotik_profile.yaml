@@ -2,7 +2,7 @@
 - hosts: "{{ instance_name }}"
   vars:
     ansible_connection: network_cli
-    ansible_network_os: router_os
+    ansible_network_os: routeros
     ansible_user: admin
 
   roles:
