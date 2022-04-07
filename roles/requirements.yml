@@ -71,3 +71,7 @@ roles:
 - src: https://github.com/elastic/ansible-elasticsearch
   version: main
   name: elastic.elasticsearch
+
+- src: https://github.com/hopla-cloud/ansible-role-mikrotik-create-profile
+    version: main
+      name: hoplacloud.mikrotik_create_profile
