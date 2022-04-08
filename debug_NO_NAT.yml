@@ -1,0 +1,24 @@
+---
+- hosts: "{{ instance_name }}"
+  pre_tasks:
+    - name: Show all facts
+      setup:
+
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars["{{ instance_name }}"]
+
+    - name: Display variables/facts tower
+      debug:
+        msg:
+          - "tower_job_id {{ tower_job_id }}"
+          - "tower_job_launch_type {{ tower_job_launch_type }}"
+          - "tower_job_template_name {{ tower_job_template_name }}"
+          - "tower_user_name {{ tower_user_name }}"
+          - "tower_inventory_name {{ tower_inventory_name }}"
+          - "tower_inventory_name {{ tower_inventory_name }}"
+
+    - name: Display variables org
+      debug:
+        msg:
+          - "tower_organization_name {{ tower_organization_name }}"
