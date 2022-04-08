@@ -29,8 +29,8 @@
      - set_fact:
           gw_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].gateway_ip') | join('\n') }}"
           cidr_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].cidr') | join('\n') }}"
-          netmask_ipv4: "{{ cidr_ipv4 | ipaddr('netmask') }}"
-          network_ipv4: "{{ cidr_ipv4 | ipaddr('address') }}"
+          netmask_ipv4: "{{ cidr_ipv4 | ansible.netcommon.ipaddr('netmask') }}"
+          network_ipv4: "{{ cidr_ipv4 | ansible.netcommon.ipaddr('address') }}"
 - hosts: "{{ instance_name }}"
   vars:
     ansible_connection: network_cli
