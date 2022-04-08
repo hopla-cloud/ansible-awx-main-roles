@@ -4,3 +4,4 @@ collections:
   version: 4.0.2
 
 - name: community.routeros
+- name: ansible.netcommon
