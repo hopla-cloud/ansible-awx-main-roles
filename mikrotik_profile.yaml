@@ -30,6 +30,9 @@
          filters:
            id: "{{ subnet_id_v4 }}"
        register: chr_subnet
+     - set_fact:
+          gw_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].gateway_ip') | join('\n') }}"
+          cidr_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].cidr') | join('\n') }}"
 
 - hosts: "{{ instance_name }}"
   vars:
