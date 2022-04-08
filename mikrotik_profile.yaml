@@ -31,6 +31,37 @@
            id: "{{ subnet_id_v4 }}"
        register: chr_subnet
 
+- name: Génération fichier .ovpn
+  copy:
+    dest: "/etc/test.ovpn"
+    content: |
+      client
+      dev tun
+      proto tcp-client
+      remote {{ openstack.metadata.ssh_pub_ip }} 1194
+      nobind
+      persist-key
+      persist-tun
+      cipher AES-256-CBC
+      auth SHA1
+      pull
+      verb 1
+      mute 3
+
+      auth-user-pass auth.cfg
+
+      ca {{id_client}}_CA.crt
+      cert cert_export_{{username}}.crt
+      key cert_export_{{username}}.key
+      route
+
+- name: Génération fichier .cfg
+  copy:
+    dest: "/etc/test.cfg"
+    content: |
+      {{username}}
+      {{passphrase}}
+
 - hosts: "{{ instance_name }}"
   vars:
     ansible_connection: network_cli
