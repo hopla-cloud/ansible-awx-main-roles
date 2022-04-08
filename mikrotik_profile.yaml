@@ -1,9 +1,25 @@
 ---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+     - os_server_info:
+         filters:
+           name: "{{ username }}chr1"
+       register: chr_server        
+     - os_subnets_info:
+         filters:
+           id: "{{ subnet_id_v4 }}"
+       register: chr_subnet
+     - set_fact:
+          gw_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].gateway_ip') | join('\n') }}"
+          cidr_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].cidr') | join('\n') }}"
+
 - hosts: "{{ instance_name }}"
   vars:
     ansible_connection: network_cli
     ansible_network_os: routeros
     ansible_user: admin
 
+ 
   roles:
     - hoplacloud.mikrotik_create_profile
