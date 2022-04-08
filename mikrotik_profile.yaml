@@ -4,7 +4,7 @@
   tasks:
      - os_server_info:
          filters:
-           name: "{{ username }}chr1"
+           name: "{{ awx_inventory_name }}chr1"
        register: chr_server
      - ansible.builtin.debug:
           msg: "{{ hostvars['localhost'] }}"
