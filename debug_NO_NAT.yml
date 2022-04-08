@@ -9,7 +9,7 @@
         var: hostvars["{{ instance_name }}"]
 
     - name: Display variables/facts tower
-      debug::
+      debug:
         msg:
           - "tower_job_id {{ tower_job_id }}"
           - "tower_job_launch_type {{ tower_job_launch_type }}"
