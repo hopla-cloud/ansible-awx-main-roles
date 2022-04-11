@@ -2,7 +2,7 @@
 - hosts: localhost
   gather_facts: no
   tasks:
-     - os_server_info:
+     - openstack.cloud.server_info:
          filters:
            name: "{{ awx_inventory_name }}chr1"
        register: chr_server
@@ -13,7 +13,7 @@
           mikrotik_id: "{{ chr_server.openstack_servers | json_query('[].id') | join('\n') }}"
      - ansible.builtin.debug:
           msg: mikrotik_ipv4 {{ mikrotik_ipv4 }}
-     - os_port_info:
+     - openstack.cloud.port_info:
          filters:
            device_id: "{{ mikrotik_id }}"
        register: chr_port
@@ -22,7 +22,7 @@
           subnet_id_v4: "{{ chr_port.openstack_ports | json_query('[].fixed_ips[]') }}"
      - set_fact:
           subnet_id_v4: "{{ subnet_id_v4 | json_query(query_gw_v4) | join('\n') }}"
-     - os_subnets_info:
+     - openstack.cloud.subnets_info:
          filters:
            id: "{{ subnet_id_v4 }}"
        register: chr_subnet
