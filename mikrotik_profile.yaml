@@ -1,6 +1,6 @@
 ---
-ansible_python_interpreter: /usr/bin/env python3
 - hosts: localhost
+  ansible_python_interpreter: /usr/bin/env python3
   gather_facts: no
   tasks:
      - openstack.cloud.server_info:
@@ -32,6 +32,7 @@ ansible_python_interpreter: /usr/bin/env python3
           cidr_ipv4: "{{ chr_subnet.openstack_subnets | json_query('[].cidr') | join('\n') }}"
           netmask_ipv4: "{{ cidr_ipv4 | ansible.utils.ipaddr('netmask') }}"
           network_ipv4: "{{ cidr_ipv4 | ansible.utils.ipaddr('address') }}"
+
 - hosts: "{{ instance_name }}"
   vars:
     ansible_connection: network_cli
