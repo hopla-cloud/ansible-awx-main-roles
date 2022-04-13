@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
-  ansible_python_interpreter: /usr/bin/env python3
+  vars:
+    ansible_python_interpreter: /usr/bin/env python3
   gather_facts: no
   tasks:
      - openstack.cloud.server_info:
