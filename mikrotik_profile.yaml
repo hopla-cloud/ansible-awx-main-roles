@@ -12,6 +12,7 @@
      - set_fact:
           mikrotik_ipv4: "{{ chr_server.openstack_servers | json_query('[].private_v4') | join('\n') }}"
           mikrotik_id: "{{ chr_server.openstack_servers | json_query('[].id') | join('\n') }}"
+          mikrotik_pub_ip: "{{ chr_server.openstack_servers | json_query('[].public_v4') | join('\n') }}"
      - ansible.builtin.debug:
           msg: mikrotik_ipv4 {{ mikrotik_ipv4 }}
      - openstack.cloud.port_info:
