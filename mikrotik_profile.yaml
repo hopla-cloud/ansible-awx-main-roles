@@ -40,7 +40,11 @@
     ansible_connection: network_cli
     ansible_network_os: routeros
     ansible_user: admin
-
+  pre_tasks:
+     - set_fact:
+          mikrotik_pub_ip: "{{ hostvars['localhost']['mikrotik_pub_ip'] }}"
+          network_ipv4: "{{ hostvars['localhost']['network_ipv4'] }}"
+          network_ipv4: "{{ hostvars['localhost']['network_ipv4'] }}"
  
   roles:
     - hoplacloud.mikrotik_create_profile
