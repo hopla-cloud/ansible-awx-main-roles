@@ -75,3 +75,7 @@ roles:
 - src: https://github.com/hopla-cloud/ansible-role-mikrotik-create-profile
   version: main
   name: hoplacloud.mikrotik_create_profile
+
+- src: https://github.com/hopla-cloud/ansible-role-veeam-api-create-customer
+  version: main
+  name: hoplacloud.ansible-role-veeam-api-create-customer
