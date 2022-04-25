@@ -1,0 +1,4 @@
+---
+- hosts: {{ instance_name }}
+  roles:
+    - hoplacloud.ansible-role-veeam-api-create-customer
