@@ -4,7 +4,7 @@ collections:
   version: 4.0.2
 - name: community.mysql
   type: galaxy
-  version: 3.9.0
+  version: 3.8.0
 
 - name: community.routeros
 - name: ansible.netcommon
