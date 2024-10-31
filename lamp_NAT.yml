@@ -56,9 +56,6 @@
           - python-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
-  roles:
-    - hoplacloud.apache_php
-    - geerlingguy.mysql
 
     - name: Set fact for python mysql Ubuntu 22.04
       set_fact:
