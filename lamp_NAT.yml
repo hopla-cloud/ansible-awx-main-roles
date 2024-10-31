@@ -18,6 +18,10 @@
       shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 F1656F24C74CD1D8"
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
+    - name: Add mariadb Repository Key for Ubuntu 22.04
+      shell: "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8"
+      when: "'mariadb-server' in mysql_packages and 'jammy' in ansible_distribution_release"
+
     - name: Add mariadb 10.5 Repository Ubuntu 18.04
       apt_repository:
         repo: "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.5/ubuntu bionic main"
@@ -32,6 +36,13 @@
         filename: MariaDB
       when: "'mariadb-server' in mysql_packages and 'focal' in ansible_distribution_release"
 
+    - name: Add mariadb 11.3.2 Repository Ubuntu 22.04
+      apt_repository:
+        repo: "deb http://mariadb.mirrors.ovh.net/MariaDB/repo/11.3.2/ubuntu jammy main"
+        state: present
+        filename: MariaDB
+      when: "'mariadb-server' in mysql_packages and 'jammy' in ansible_distribution_release"
+
     - name: Set fact for python mysql Ubuntu 20.04
       set_fact:
         mysql_python_package_debian:
@@ -45,6 +56,16 @@
           - python-mysqldb
           - python3-pymysql
       when: "'mariadb-server' in mysql_packages and 'bionic' in ansible_distribution_release"
+  roles:
+    - hoplacloud.apache_php
+    - geerlingguy.mysql
+
+    - name: Set fact for python mysql Ubuntu 22.04
+      set_fact:
+        mysql_python_package_debian:
+          - python3-mysqldb
+          - python3-pymysql
+      when: "'mariadb-server' in mysql_packages and 'jammy' in ansible_distribution_release"
   roles:
     - hoplacloud.apache_php
     - geerlingguy.mysql
